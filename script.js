@@ -61,8 +61,8 @@ function displayResults(data, day) {
     resultsDiv.innerHTML += `
         <div class="results-day">
             <h3>${day}</h3>
-            <p>Sunrise: ${localSunrise}</p>
-            <p>Sunset: ${localSunset}</p>
+            <p>Sunset: ${localSunrise}</p>
+            <p>Sunrise: ${localSunset}</p>
             <p>Solar Noon: ${localSolarNoon}</p>
             <p>Day Length: ${data.day_length}</p>
         </div>
