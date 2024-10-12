@@ -53,13 +53,21 @@ function displayResults(data, day) {
         resultsDiv.innerHTML = '';
     }
     
+    const localSunrise = convertToLocalTime(data.sunrise);
+    const localSunset = convertToLocalTime(data.sunset);
+    
     resultsDiv.innerHTML += `
         <div class="results-day">
             <h3>${day}</h3>
-            <p>Sunrise: ${data.sunrise}</p>
-            <p>Sunset: ${data.sunset}</p>
+            <p>Sunrise: ${localSunrise}</p>
+            <p>Sunset: ${localSunset}</p>
             <p>Solar Noon: ${data.solar_noon}</p>
             <p>Day Length: ${data.day_length}</p>
         </div>
     `;
+}
+
+function convertToLocalTime(utcTime) {
+    const date = new Date(`1970-01-01T${utcTime}Z`);
+    return date.toLocaleTimeString(); // Convert to local time string
 }
