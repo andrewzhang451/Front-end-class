@@ -29,8 +29,8 @@ function showError(error) {
 
 function getSunriseSunset(lat, lng) {
     const urls = [
-        `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`,
-        `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=tomorrow`
+        `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today&formatted=0`,
+        `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=tomorrow&formatted=0`
     ];
 
     Promise.all(urls.map(url => fetch(url).then(resp => resp.json())))
@@ -53,21 +53,24 @@ function displayResults(data, day) {
         resultsDiv.innerHTML = '';
     }
     
+
     const localSunrise = convertToLocalTime(data.sunrise);
     const localSunset = convertToLocalTime(data.sunset);
+    const localSolarNoon = convertToLocalTime(data.solar_noon);
     
     resultsDiv.innerHTML += `
         <div class="results-day">
             <h3>${day}</h3>
             <p>Sunrise: ${localSunrise}</p>
             <p>Sunset: ${localSunset}</p>
-            <p>Solar Noon: ${data.solar_noon}</p>
+            <p>Solar Noon: ${localSolarNoon}</p>
             <p>Day Length: ${data.day_length}</p>
         </div>
     `;
 }
 
+
 function convertToLocalTime(utcTime) {
-    const date = new Date(`1970-01-01T${utcTime}Z`);
-    return date.toLocaleTimeString(); // Convert to local time string
+    const utcDate = new Date(utcTime); 
+    return utcDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
