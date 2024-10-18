@@ -52,7 +52,6 @@ function displayResults(data, day) {
     if (day === 'Today') {
         resultsDiv.innerHTML = '';
     }
-    
 
     const localSunrise = convertToLocalTime(data.sunrise);
     const localSunset = convertToLocalTime(data.sunset);
@@ -61,16 +60,21 @@ function displayResults(data, day) {
     resultsDiv.innerHTML += `
         <div class="results-day">
             <h3>${day}</h3>
-            <p>Sunset: ${localSunrise}</p>
+
             <p>Sunrise: ${localSunset}</p>
+            <p>Sunset: ${localSunrise}</p>
+            
             <p>Solar Noon: ${localSolarNoon}</p>
             <p>Day Length: ${data.day_length}</p>
         </div>
     `;
 }
 
-
+// Helper function to convert UTC time string (ISO 8601) to local time
 function convertToLocalTime(utcTime) {
-    const utcDate = new Date(utcTime); 
-    return utcDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    // Convert the time string to a Date object (this handles time zone offsets)
+    const date = new Date(utcTime);
+
+    // Return the local time string
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
