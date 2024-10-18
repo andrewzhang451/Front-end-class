@@ -18,6 +18,22 @@ body {
     flex-direction: column;
 }
 
+#description-container {
+    text-align: center; 
+    padding: 10px 20px; 
+    margin: 15px auto;
+    max-width: 800px; 
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#description {
+    font-size: 1.1rem; 
+    line-height: 1.6; 
+    color: #4a4a4a; 
+    margin: 0;
+}
 
 header, footer {
     text-align: center;
