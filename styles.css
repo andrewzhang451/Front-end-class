@@ -65,6 +65,16 @@ h1 {
     font-weight: bold;
 }
 
+#gradient-text {
+    background: linear-gradient(to right, yellow, orange, red); /* Gradient for the text */
+    background-clip: text;
+    color: transparent; 
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
 h2 {
     font-size: 1.8rem; 
     margin-bottom: 15px;
