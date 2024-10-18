@@ -7,23 +7,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <h1>Sunrise and Sunset Dashboard</h1>
+    </header>
 
-    <p>This is a dashboard that shows the sunrise and sunset times for a given location.</p>
-    
-    <div id="dashboard">
-        <h1>Sunrise and Sunset Times</h1>
-        <button id="locate-btn">Use Current Location</button>
-        <select id="preset-locations">
-            <option value="34.0549,118.2426">Los Angeles</option>
-            <option value="40.7128,74.0060">New York</option>
-            <option value="51.507351,0.1276">London</option>
-            <option value="35.689487,139.691711">Tokyo</option>
-            <option value="55.755825,37.617298">Moscow</option>
-        </select>
-        <div id="results">
-            <!--this is where the result will be printed-->
-        </div>
-    </div>
+    <main>
+        <p>This is a website that shows the sunrise and sunset times for a given location.</p>
+
+        <section id="dashboard">
+            <h2>Sunrise and Sunset Times</h2>
+            <button id="locate-btn">Use Current Location</button>
+            <select id="preset-locations">
+                <option avlue="" disable selected>Select a location</option>
+                <option value="34.0549,118.2426">Los Angeles</option>
+                <option value="40.7128,74.0060">New York</option>
+                <option value="51.507351,0.1276">London</option>
+                <option value="35.689487,139.691711">Tokyo</option>
+                <option value="55.755825,37.617298">Moscow</option>
+            </select>
+            <div id="results">
+                <!--this is where the result will be printed-->
+            </div>
+        </section>
+
+        <input type="text" id="custom-location" placeholder="Enter Latitude,Longitude">
+        <button id="custom-loc-btn">Use Custom Location</button>
+    </main>
+
+    <footer>
+        <p>website created by Andrew Zhang.</p>
+    </footer>
+
     <script src="script.js"></script> 
 </body>
 </html>

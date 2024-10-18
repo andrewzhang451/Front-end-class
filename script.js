@@ -78,3 +78,32 @@ function convertToLocalTime(utcTime) {
     // Return the local time string
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const locateBtn = document.getElementById('locate-btn');
+    const presetLocations = document.getElementById('preset-locations');
+    const customLocBtn = document.getElementById('custom-loc-btn');
+    const customLocationInput = document.getElementById('custom-location');
+
+    locateBtn.addEventListener('click', function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
+
+    presetLocations.addEventListener('change', function() {
+        const [lat, lng] = this.value.split(',');
+        getSunriseSunset(lat, lng);
+    });
+
+    customLocBtn.addEventListener('click', function() {
+        const [lat, lng] = customLocationInput.value.split(',');
+        if (lat && lng) {
+            getSunriseSunset(lat, lng);
+        } else {
+            alert("Please enter a valid latitude and longitude.");
+        }
+    });
+});
