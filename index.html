@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="main-container">
     <header>
         <h1 id="gradient-text">Sunrise and Sunset Dashboard</h1>
     </header>
@@ -28,8 +29,16 @@
                 <option value="55.755825,37.617298">Moscow</option>
             </select>
             <div id="results">
-                <!-- the result will go in here -->
+                <!-- the result will go in here :) -->
             </div>
+        </section>
+
+        <section id="filter-section">
+            <h2>Filter Options</h2>
+            <label><input type="checkbox" id="filter-sunrise" checked> Show Sunrise Time</label><br>
+            <label><input type="checkbox" id="filter-sunset" checked> Show Sunset Time</label><br>
+            <label><input type="checkbox" id="filter-solar-noon" checked> Show Solar Noon</label><br>
+            <label><input type="checkbox" id="filter-day-length" checked> Show Day Length</label><br>
         </section>
 
         <section id="custom-location-section">
@@ -43,5 +52,6 @@
     </footer>
 
     <script src="script.js"></script> 
+</div>
 </body>
 </html>
