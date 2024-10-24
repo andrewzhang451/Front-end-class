@@ -1,6 +1,7 @@
 let lastData = []; //This var will keep track of the data that is last pulled from the API
 
 document.addEventListener('DOMContentLoaded', function() {
+    // ALL THESE CONST VARIABLAES
     const locateBtn = document.getElementById('locate-btn');
     const presetLocations = document.getElementById('preset-locations');
     const customLocBtn = document.getElementById('custom-loc-btn');
@@ -19,15 +20,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    
+    // this will get lat and lng from getSunriseSunset function and split it to format it when button is clicked
     presetLocations.addEventListener('change', function() {
         const [lat, lng] = this.value.split(',');
         getSunriseSunset(lat, lng);
     });
 
+    //this is button for the custom lat and lng getter. 
     customLocBtn.addEventListener('click', function() {
         const [lat, lng] = customLocationInput.value.split(',');
-        if (lat && lng) {
+        if (lat && lng) { //if this exists, if True
             getSunriseSunset(lat, lng);
         } else {
             alert("Please enter a valid latitude and longitude.");
@@ -51,16 +53,19 @@ function showError(error) {
     resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
 }
 
+
+//this is function for u to get lat and lng, used of API
 function getSunriseSunset(lat, lng) {
     const urls = [
         `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today&formatted=0`,
         `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=tomorrow&formatted=0`
     ];
 
+    // promise function will wait for all urls to finish fetching datas before continuing
     Promise.all(urls.map(url => fetch(url).then(resp => resp.json())))
         .then(data => {
             if (data[0].status === 'OK' && data[1].status === 'OK') {
-                lastData = data; // Store the data for future use
+                lastData = data; // Store the data for future use at the top of the file
                 displayResults(data[0].results, 'Today');
                 displayResults(data[1].results, 'Tomorrow');
             } else {
@@ -72,6 +77,7 @@ function getSunriseSunset(lat, lng) {
         });
 }
 
+//will show result within the div on the html file
 function displayResults(data, day) {
     const resultsDiv = document.getElementById('results');
     if (day === 'Today') {
@@ -82,14 +88,17 @@ function displayResults(data, day) {
     const localSunset = convertToLocalTime(data.sunset);
     const localSolarNoon = convertToLocalTime(data.solar_noon);
 
+    //these are the filters via buttonss/checkboxes(?)
     const showSunrise = document.getElementById('filter-sunrise').checked;
     const showSunset = document.getElementById('filter-sunset').checked;
     const showSolarNoon = document.getElementById('filter-solar-noon').checked;
     const showDayLength = document.getElementById('filter-day-length').checked;
 
+
+    //this will generate the result within the result div in html file depending on your filtering
+    //will create a div class called "result-day"
     let content = `<div class="results-day">
                 <h3>${day}</h3>`;
-
     if (showSunrise) {
         content += `<p>Sunrise: ${localSunrise}</p>`;
     }
